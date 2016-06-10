@@ -1,0 +1,296 @@
+%% ------------------------------------------------------------------------------------------------ %
+% ZUSAMMENFASSUNG
+% WAHRSCHEINLICHKEIT UND STATISTIK
+% ------------------------------------------------------------------------------------------------ %
+% Autor: J�r�me Dohrau
+% Email: dohrauj @ ...
+% Die Zusammenfassung darf gerne f�r den eigenen Gebrauch angepasst werden. Falls jemand einen
+% Fehler findet, w�rde ich mich �ber eine Benachrichtigung per Email freuen.
+% ------------------------------------------------------------------------------------------------ %
+
+
+\documentclass[a4paper,twocolumn]{article}
+
+
+% ------------------------------------------------------------------------------------------------ %
+% ALLGEMEINE PAKETE
+% ------------------------------------------------------------------------------------------------ %
+
+
+% Silbentrennung, Sonderzeichen ect.
+\usepackage[german]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+
+% Mathematische Zeichen
+\usepackage{amssymb}
+% Lehrs�tze
+\usepackage{amsthm}
+% Mathematische Extras (Matrizen ect.)
+\usepackage{amsxtra}
+
+% F�r kompakte Listen
+\usepackage{paralist}
+
+% Rahmen
+\usepackage{framed}
+
+% Grafik
+%\usepackage{graphicx}
+\usepackage{ifpdf}
+\usepackage{psfrag}
+\usepackage{epstopdf}
+
+\usepackage{titlesec}
+\usepackage{titletoc}
+
+% Graphs and Automata
+\usepackage{gastex}
+
+% farben
+\usepackage{color}
+\usepackage{bbold}
+
+
+
+
+% ------------------------------------------------------------------------------------------------ %
+% FARBEN
+% ------------------------------------------------------------------------------------------------ %
+
+
+\definecolor{headtext}{rgb}{0.50,0.50,0.50}
+\definecolor{foottext}{rgb}{0.50,0.50,0.50}
+\definecolor{headsepline}{rgb}{0.80,0.80,0.80}
+\definecolor{footsepline}{rgb}{0.80,0.80,0.80}
+
+
+% Schattierung f�r Hinweisboxen
+\definecolor{shadecolor}{rgb}{0.88,0.91,0.95}
+
+\definecolor{highlightcolor}{rgb}{1.00,0.50,0.50}
+
+
+% ------------------------------------------------------------------------------------------------ %
+% SEITEN- UND TEXTLAYOUT
+% ------------------------------------------------------------------------------------------------ %
+
+
+% Seitenr�nder
+\usepackage[left=10mm,right=10mm,top=20mm,bottom=20mm]{geometry}
+
+% Zeileneinzug am Anfang eines Absatzes
+\setlength{\parindent}{0em}
+
+
+% ------------------------------------------------------------------------------------------------ %
+% KOPF- UND FUSSZEILEN
+% ------------------------------------------------------------------------------------------------ %
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\fancyhead{} % l�schen
+\fancyhead[L]{\color{headtext}\uppercase{Chemie Matur Zusammenfassung}}
+\fancyhead[R]{\color{headtext}\leftmark}
+
+\fancyfoot{} % l�schen
+\fancyfoot[L]{\color{foottext}\uppercase{Seite} \thepage}
+\fancyfoot[R]{\color{foottext}\uppercase{Max Mathys}}
+
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headrule}{{\color{headsepline}\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}}
+\renewcommand{\footrulewidth}{1pt}
+\renewcommand{\footrule}{{\color{footsepline}\vskip-\footruleskip\vskip-\footrulewidth\hrule width\headwidth height\footrulewidth\vskip\footruleskip}}
+
+
+% ------------------------------------------------------------------------------------------------ %
+% LEHRS�TZE (DEFINITIONEN ETC.)
+% ------------------------------------------------------------------------------------------------ %
+
+
+\newtheoremstyle{defstyle}
+	% Abstand oben
+	{10pt}
+	% Abstand unten
+	{10pt}
+	% Schriftart
+	{\normalfont}
+	% Zeileneinzug (leer = kein Zeileneinzug, \parindent = Absatz-Zeileneinzug)
+	{}
+	% Titel Schriftart
+	{\normalfont\bfseries}
+	% Zeichen nach dem Titel
+	{:} 
+	% Leerraum nach dem Titel
+	{ }
+	% Lehrsatzkopf definieren (leer = normal)
+	{#3}
+
+\newtheoremstyle{thmstyle}
+	% Abstand oben
+	{10pt}
+	% Abstand unten
+	{10pt}
+	% Schriftart
+	{\normalfont}
+	% Zeileneinzug (leer = kein Zeileneinzug, \parindent = Absatz-Zeileneinzug)
+	{}
+	% Titel Schriftart
+	{\normalfont\bfseries}
+	% Zeichen nach dem Titel
+	{:} 
+	% Leerraum nach dem Titel
+	{ }
+	% Lehrsatzkopf definieren (leer = normal)
+	{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+
+\theoremstyle{defstyle}
+% Definition
+\newtheorem*{definition}{Definition}
+
+\theoremstyle{thmstyle}
+% 
+\newtheorem*{theorem}{Satz}
+% Beachte
+\newtheorem*{tnote}{Hinweis}
+
+% Beispiel
+\newtheorem*{example}{Beispiel}
+
+\newenvironment{note}
+	{\begin{snugshade}\begin{tnote}}
+	{\end{tnote}\end{snugshade}}
+	
+\newenvironment{highlight}
+	{\begin{snugshade}}
+	{\end{snugshade}}
+
+
+% ------------------------------------------------------------------------------------------------ %
+% ABBILDUNGEN
+% ------------------------------------------------------------------------------------------------ %
+
+
+\usepackage[bf]{caption}
+
+\addto\captionsgerman{
+    \renewcommand{\figurename}{Abb.}
+    \renewcommand{\tablename}{Tab.}}
+
+% Abbildungs�berschrift
+\renewcommand{\captionfont}{\footnotesize\sffamily}
+
+
+% ------------------------------------------------------------------------------------------------ %
+% SELBSTDEFINIERTE BEFEHLE
+% ------------------------------------------------------------------------------------------------ %
+
+
+\newcommand{\todo}[1]{{\definecolor{shadecolor}{rgb}{1.00,0.30,0.30}\begin{snugshade}{\bf TODO:} #1\end{snugshade}}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+
+\renewcommand{\d}{\mathrm{d}}
+
+\renewcommand{\theta}{\vartheta}
+\renewcommand{\phi}{\varphi}
+
+\newcommand{\var}{\mathrm{Var}}
+\newcommand{\cov}{\mathrm{Cov}}
+\newcommand{\sd}{\mathrm{sd}}
+\newcommand{\corr}{\mathrm{Corr}}
+
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+
+
+% ------------------------------------------------------------------------------------------------ %
+% LAYOUT INHALTSVERZEICHNIS UNDSO
+% ------------------------------------------------------------------------------------------------ %
+
+
+\renewcommand{\thepart}{\Alph{part}}
+\renewcommand{\thesection}{\Alph{part}.\arabic{section}}
+
+\titlecontents{part}[0em]%
+{\vspace{1em}\bf\large}{\thecontentslabel\enskip}{}%
+{\hfill\contentspage}
+
+\titlecontents{section}[0em]%
+{\vspace{0.3em}\bf}{\thecontentslabel\enskip}{}%
+{\hfill\contentspage}
+
+\titlecontents{subsection}[1em]%
+{}{\thecontentslabel\enskip}{}%
+{\titlerule*[0.6em]{.}\contentspage}
+
+\titlecontents{subsubsection}[2em]%
+{}{\thecontentslabel\enskip}{}%
+{\titlerule*[0.6em]{.}\contentspage}
+
+
+% ------------------------------------------------------------------------------------------------ %
+% INHALT
+% ------------------------------------------------------------------------------------------------ %
+
+
+\begin{document}
+
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\hfill\newpage
+
+\setcounter{part}{1}
+\setcounter{section}{0}
+\part*{Atomlehre}
+\addcontentsline{toc}{part}{Atomlehre}
+
+\input{Atommodelle.tex}
+
+\setcounter{part}{2}
+\setcounter{section}{0}
+\part*{Bindungslehre}
+\addcontentsline{toc}{part}{Bindungslehre}
+
+\input{KovalenteBindung.tex}
+\input{Ionenbindung.tex}
+\input{Metallbindung.tex}
+
+\setcounter{part}{18}
+\setcounter{section}{0}
+\part*{Reaktionslehre}
+\addcontentsline{toc}{part}{Reaktionslehre}
+
+\input{ChemischesRechnen.tex}
+\input{Kinetik.tex}
+\input{ChemischesGleichgewicht.tex}
+\input{Ozon.tex}
+\input{SaeureBaseReaktionen.tex}
+\input{Redox.tex}
+
+\setcounter{part}{15}
+\setcounter{section}{0}
+\part*{Organische Chemie}
+\addcontentsline{toc}{part}{Organische Chemie}
+
+\input{Kohlenwasserstoffe.tex}
+\input{FunktionelleGruppen.tex}
+\input{Erdoel.tex}
+\input{Kunststoffe.tex}
+\input{AminosaeurenUndProteine.tex}
+
+
+\input{anhang.tex}
+
+\label{lastpage}
+
+\end{document}
+
+
+% ------------------------------------------------------------------------------------------------ %
